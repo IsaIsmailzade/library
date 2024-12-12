@@ -2,11 +2,12 @@ package com.example.isa.library.util;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.experimental.UtilityClass;
 
 import java.io.IOException;
 import java.util.Properties;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@UtilityClass
 public final class PropertiesUtil {
 
     private static final Properties PROPERTIES = new Properties();

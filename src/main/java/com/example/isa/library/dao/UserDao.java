@@ -20,6 +20,7 @@ import static java.sql.Statement.RETURN_GENERATED_KEYS;
 public class UserDao implements Dao<Long, UsersEntity> {
 
     private static final UserDao INSTANCE = new UserDao();
+
     private static final String FIND_ALL_SQL = """
             SELECT * FROM users
             """;
