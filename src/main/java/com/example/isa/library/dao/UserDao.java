@@ -21,13 +21,8 @@ public class UserDao implements Dao<Long, UsersEntity> {
 
     private static final UserDao INSTANCE = new UserDao();
 
-    private static final String FIND_ALL_SQL = """
-            SELECT * FROM users
-            """;
-    private static final String FIND_BY_ID_SQL = """
-            SELECT * FROM users
-            WHERE id = ?
-            """;
+    private static final String FIND_ALL_SQL = "SELECT * FROM users";
+    private static final String FIND_BY_ID_SQL = "SELECT * FROM users WHERE id = ?";
     private static final String SAVE_SQL = """
             INSERT INTO users (name, surname, email, password, phone, role) VALUES (?, ?, ?, ?, ?, ?)
             """;
