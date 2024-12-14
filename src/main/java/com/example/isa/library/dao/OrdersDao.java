@@ -6,7 +6,6 @@ import lombok.SneakyThrows;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +17,7 @@ public class OrdersDao implements Dao<Long, OrdersEntity> {
 
     private static final String DELETE = "DELETE FROM orders WHERE user_id = ?";
     private static final String SAVE = """
-            INSERT INTO orders (id, user_id, book_id, librarian_id, issued_date, return_date) 
+            INSERT INTO orders (id, user_id, book_id, librarian_id, issued_date, return_date)
             VALUES (?, ?, ?, ?, ?, ?)
             """;
 
