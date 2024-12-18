@@ -7,8 +7,8 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 @Builder
-public class BooksEntity {
+public class Librarians {
 
-    Long id;
-    String title;
+    private Long id;
+    private String name;
 }

@@ -12,7 +12,7 @@ public final class ConnectionManager {
     public static final String URL_KEY = "db.url";
     public static final String USERNAME_KEY = "db.username";
     public static final String PASSWORD_KEY = "db.password";
-    public static final String DB_DRIVER = "org.postgresql.Driver";
+    public static final String DB_DRIVER = "db.driver";
 
     static {
         loadDriver();
@@ -20,7 +20,7 @@ public final class ConnectionManager {
 
     @SneakyThrows
     private static void loadDriver() {
-        Class.forName(DB_DRIVER);
+        Class.forName(PropertiesUtil.get(DB_DRIVER));
     }
 
 

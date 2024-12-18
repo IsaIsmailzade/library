@@ -1,6 +1,6 @@
 package com.example.isa.library.dao;
 
-import com.example.isa.library.entity.LibrariansEntity;
+import com.example.isa.library.entity.Librarians;
 import com.example.isa.library.util.ConnectionManager;
 import lombok.SneakyThrows;
 
@@ -11,7 +11,7 @@ import java.util.Optional;
 
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
 
-public class LibrarianDao implements Dao<Long, LibrariansEntity> {
+public class LibrarianDao implements Dao<Long, Librarians> {
 
     private static final LibrarianDao INSTANCE = new LibrarianDao();
     private static final String SAVE_NAME = """
@@ -22,12 +22,12 @@ public class LibrarianDao implements Dao<Long, LibrariansEntity> {
             """;
 
     @Override
-    public List<LibrariansEntity> findAll() {
+    public List<Librarians> findAll() {
         return List.of();
     }
 
     @Override
-    public Optional<LibrariansEntity> findById(Long id) {
+    public Optional<Librarians> findById(Long id) {
         return Optional.empty();
     }
 
@@ -43,13 +43,13 @@ public class LibrarianDao implements Dao<Long, LibrariansEntity> {
     }
 
     @Override
-    public void update(LibrariansEntity entity) {
+    public void update(Librarians entity) {
 
     }
 
     @SneakyThrows
     @Override
-    public LibrariansEntity save(LibrariansEntity entity) {
+    public Librarians save(Librarians entity) {
         try (Connection connection = ConnectionManager.get();
              var preparedStatement = connection.prepareStatement(SAVE_NAME, RETURN_GENERATED_KEYS)) {
             preparedStatement.setObject(1, entity.getName());

@@ -7,14 +7,8 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 @Builder
-public class UsersEntity {
+public class Books {
 
     Long id;
-    String name;
-    String surname;
-    String email;
-    String password;
-    Integer phone;
-    Role role;
-    Boolean blacklisted = false;
+    String title;
 }

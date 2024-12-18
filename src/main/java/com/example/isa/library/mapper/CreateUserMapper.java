@@ -1,15 +1,15 @@
 package com.example.isa.library.mapper;
 
 import com.example.isa.library.dto.CreateUserDto;
-import com.example.isa.library.entity.UsersEntity;
+import com.example.isa.library.entity.Users;
 
-public class CreateUserMapper implements Mapper<CreateUserDto, UsersEntity> {
+public class CreateUserMapper implements Mapper<CreateUserDto, Users> {
 
     private static final CreateUserMapper INSTANCE = new CreateUserMapper();
 
     @Override
-    public UsersEntity mapFrom(CreateUserDto createUserDto) {
-        return UsersEntity.builder()
+    public Users mapFrom(CreateUserDto createUserDto) {
+        return Users.builder()
                 .name(createUserDto.getName())
                 .surname(createUserDto.getSurname())
                 .email(createUserDto.getEmail())

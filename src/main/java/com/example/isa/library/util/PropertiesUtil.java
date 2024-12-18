@@ -16,7 +16,7 @@ public final class PropertiesUtil {
 
     @SneakyThrows
     private static void loadProperties() {
-        var inputStream = Properties.class.getClassLoader().getResourceAsStream("application.properties");
+        var inputStream = PropertiesUtil.class.getClassLoader().getResourceAsStream("application.properties");
         PROPERTIES.load(inputStream);
     }
 

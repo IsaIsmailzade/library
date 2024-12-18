@@ -3,7 +3,7 @@ package com.example.isa.library.service;
 import com.example.isa.library.dao.UserDao;
 import com.example.isa.library.dto.CreateUserDto;
 import com.example.isa.library.dto.UserDto;
-import com.example.isa.library.entity.UsersEntity;
+import com.example.isa.library.entity.Users;
 import com.example.isa.library.mapper.CreateUserMapper;
 import com.example.isa.library.mapper.UsersEntityMapper;
 import lombok.SneakyThrows;
@@ -25,9 +25,9 @@ public class UserService {
 
     @SneakyThrows
     public Long create(CreateUserDto createUserDto) {
-        UsersEntity usersEntity = createUserMapper.mapFrom(createUserDto);
-        userDao.save(usersEntity);
-        return usersEntity.getId();
+        Users users = createUserMapper.mapFrom(createUserDto);
+        userDao.save(users);
+        return users.getId();
     }
 
     public static UserService getInstance() {

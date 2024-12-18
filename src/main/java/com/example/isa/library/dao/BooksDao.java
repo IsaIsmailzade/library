@@ -1,6 +1,6 @@
 package com.example.isa.library.dao;
 
-import com.example.isa.library.entity.BooksEntity;
+import com.example.isa.library.entity.Books;
 import com.example.isa.library.util.ConnectionManager;
 import lombok.SneakyThrows;
 
@@ -11,7 +11,7 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.Optional;
 
-public class BooksDao implements Dao<Long, BooksEntity> {
+public class BooksDao implements Dao<Long, Books> {
 
     private static final BooksDao INSTANCE = new BooksDao();
     private static final String SAVE_BOOK = """
@@ -22,12 +22,12 @@ public class BooksDao implements Dao<Long, BooksEntity> {
             """;
 
     @Override
-    public List<BooksEntity> findAll() {
+    public List<Books> findAll() {
         return List.of();
     }
 
     @Override
-    public Optional<BooksEntity> findById(Long id) {
+    public Optional<Books> findById(Long id) {
         return Optional.empty();
     }
 
@@ -42,13 +42,13 @@ public class BooksDao implements Dao<Long, BooksEntity> {
     }
 
     @Override
-    public void update(BooksEntity entity) {
+    public void update(Books entity) {
 
     }
 
     @SneakyThrows
     @Override
-    public BooksEntity save(BooksEntity entity) {
+    public Books save(Books entity) {
         try (Connection connection = ConnectionManager.get();
              PreparedStatement preparedStatement = connection.prepareStatement(SAVE_BOOK, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setObject(1, entity.getTitle());

@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Data
 @Builder
-public class OrdersEntity {
+public class Orders {
 
     private Long id;
     private Integer user_id;

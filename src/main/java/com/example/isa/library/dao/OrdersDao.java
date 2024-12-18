@@ -1,6 +1,6 @@
 package com.example.isa.library.dao;
 
-import com.example.isa.library.entity.OrdersEntity;
+import com.example.isa.library.entity.Orders;
 import com.example.isa.library.util.ConnectionManager;
 import lombok.SneakyThrows;
 
@@ -11,7 +11,7 @@ import java.util.Optional;
 
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
 
-public class OrdersDao implements Dao<Long, OrdersEntity> {
+public class OrdersDao implements Dao<Long, Orders> {
 
     private static final OrdersDao INSTANCE = new OrdersDao();
 
@@ -22,12 +22,12 @@ public class OrdersDao implements Dao<Long, OrdersEntity> {
             """;
 
     @Override
-    public List<OrdersEntity> findAll() {
+    public List<Orders> findAll() {
         return List.of();
     }
 
     @Override
-    public Optional<OrdersEntity> findById(Long id) {
+    public Optional<Orders> findById(Long id) {
         return Optional.empty();
     }
 
@@ -42,13 +42,13 @@ public class OrdersDao implements Dao<Long, OrdersEntity> {
     }
 
     @Override
-    public void update(OrdersEntity entity) {
+    public void update(Orders entity) {
 
     }
 
     @SneakyThrows
     @Override
-    public OrdersEntity save(OrdersEntity entity) {
+    public Orders save(Orders entity) {
         try (Connection connection = ConnectionManager.get();
         var preparedStatement = connection.prepareStatement(SAVE, RETURN_GENERATED_KEYS)) {
 
