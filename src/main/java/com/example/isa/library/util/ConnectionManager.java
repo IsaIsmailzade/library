@@ -9,13 +9,25 @@ import java.sql.DriverManager;
 @UtilityClass
 public final class ConnectionManager {
 
-    private static final String URL_KEY = "db.url";
-    private static final String USERNAME_KEY = "db.username";
-    private static final String PASSWORD_KEY = "db.password";
+    public static final String URL_KEY = "db.url";
+    public static final String USERNAME_KEY = "db.username";
+    public static final String PASSWORD_KEY = "db.password";
+    public static final String DB_DRIVER = "org.postgresql.Driver";
+
+    static {
+        loadDriver();
+    }
+
+    @SneakyThrows
+    private static void loadDriver() {
+        Class.forName(DB_DRIVER);
+    }
+
 
     @SneakyThrows
     public static Connection get() {
-        return DriverManager.getConnection(PropertiesUtil.get(URL_KEY),
+        return DriverManager.getConnection(
+                PropertiesUtil.get(URL_KEY),
                 PropertiesUtil.get(USERNAME_KEY),
                 PropertiesUtil.get(PASSWORD_KEY));
     }

@@ -1,27 +1,23 @@
 package com.example.isa.library.util;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 
-import java.io.IOException;
 import java.util.Properties;
 
 @UtilityClass
 public final class PropertiesUtil {
 
-    private static final Properties PROPERTIES = new Properties();
+    public static final Properties PROPERTIES = new Properties();
 
     static {
         loadProperties();
     }
 
+    @SneakyThrows
     private static void loadProperties() {
-        try (var inputStream = Properties.class.getClassLoader().getResourceAsStream("application.properties")) {
-            PROPERTIES.load(inputStream);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        var inputStream = Properties.class.getClassLoader().getResourceAsStream("application.properties");
+        PROPERTIES.load(inputStream);
     }
 
     public static String get(String key) {
