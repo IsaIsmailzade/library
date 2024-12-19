@@ -7,11 +7,12 @@ import lombok.SneakyThrows;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static java.sql.Statement.*;
+import static java.sql.Statement.RETURN_GENERATED_KEYS;
 
 public class BooksDao implements Dao<Long, Books> {
 
@@ -22,10 +23,30 @@ public class BooksDao implements Dao<Long, Books> {
     private static final String DELETE_BOOK = """
             DELETE FROM books WHERE title = ?
             """;
+    private static final String FIND_ALL_BOOKS = "SELECT * FROM books";
 
     @Override
     public List<Books> findAll() {
-        return List.of();
+        try (Connection connection = ConnectionManager.get();
+             var preparedStatement = connection.prepareStatement(FIND_ALL_BOOKS)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            List<Books> books = new ArrayList<>();
+            while (resultSet.next()) {
+                books.add(buildBook(resultSet));
+            }
+            return books;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @SneakyThrows
+    private Books buildBook(ResultSet resultSet) {
+        return new Books(
+                resultSet.getObject("id", Long.class),
+                resultSet.getObject("title", String.class)
+        );
     }
 
     @Override
