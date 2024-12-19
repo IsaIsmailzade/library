@@ -11,6 +11,8 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.Optional;
 
+import static java.sql.Statement.*;
+
 public class BooksDao implements Dao<Long, Books> {
 
     private static final BooksDao INSTANCE = new BooksDao();
@@ -50,7 +52,7 @@ public class BooksDao implements Dao<Long, Books> {
     @Override
     public Books save(Books entity) {
         try (Connection connection = ConnectionManager.get();
-             PreparedStatement preparedStatement = connection.prepareStatement(SAVE_BOOK, Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(SAVE_BOOK, RETURN_GENERATED_KEYS)) {
             preparedStatement.setObject(1, entity.getTitle());
             preparedStatement.executeUpdate();
 

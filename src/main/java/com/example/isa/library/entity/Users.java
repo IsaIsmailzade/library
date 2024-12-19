@@ -14,5 +14,5 @@ public class Users {
     String surname;
     String email;
     String password;
-    Integer phone;
+    String phone;
 }

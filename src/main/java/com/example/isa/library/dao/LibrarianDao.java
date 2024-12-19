@@ -57,7 +57,6 @@ public class LibrarianDao implements Dao<Long, Librarians> {
 
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
             generatedKeys.next();
-
             entity.setId(generatedKeys.getObject("id", Long.class));
         }
         return null;

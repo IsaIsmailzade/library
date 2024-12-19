@@ -14,7 +14,7 @@ public class CreateUserMapper implements Mapper<CreateUserDto, Users> {
                 .surname(createUserDto.getSurname())
                 .email(createUserDto.getEmail())
                 .password(createUserDto.getPassword())
-                .phone(Integer.valueOf(createUserDto.getPhone()))
+                .phone(createUserDto.getPhone())
                 .build();
     }
 

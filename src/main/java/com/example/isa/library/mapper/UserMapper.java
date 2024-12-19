@@ -6,9 +6,9 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class UsersEntityMapper implements Mapper<Users, UserDto> {
+public class UserMapper implements Mapper<Users, UserDto> {
 
-    private static final UsersEntityMapper INSTANCE = new UsersEntityMapper();
+    private static final UserMapper INSTANCE = new UserMapper();
 
     @Override
     public UserDto mapFrom(Users users) {
@@ -16,11 +16,10 @@ public class UsersEntityMapper implements Mapper<Users, UserDto> {
                 .name(users.getName())
                 .surname(users.getSurname())
                 .email(users.getEmail())
-                .phone(users.getPhone())
                 .build();
     }
 
-    public static UsersEntityMapper getInstance() {
+    public static UserMapper getInstance() {
         return INSTANCE;
     }
 }

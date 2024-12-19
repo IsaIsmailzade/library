@@ -53,7 +53,7 @@ public class UserDao implements Dao<Long, Users> {
                 .surname(resultSet.getObject("surname", String.class))
                 .email(resultSet.getObject("email", String.class))
                 .password(resultSet.getObject("password", String.class))
-                .phone(resultSet.getObject("phone", Integer.class))
+                .phone(resultSet.getObject("phone", String.class))
                 .build();
     }
 
@@ -99,7 +99,7 @@ public class UserDao implements Dao<Long, Users> {
                 resultSet.getObject("surname", String.class),
                 resultSet.getObject("email", String.class),
                 resultSet.getObject("password", String.class),
-                resultSet.getObject("phone", Integer.class)
+                resultSet.getObject("phone", String.class)
         );
     }
 
