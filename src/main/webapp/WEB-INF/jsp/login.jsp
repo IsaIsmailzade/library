@@ -11,20 +11,25 @@
 <html>
 <head>
     <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
 </head>
 <body>
-    <form action="${pageContext.request.contextPath}/login" method="post">
-        <table>
-            <tr>
-                <td><label for="email">Email:</label></td>
-                <td><input type="email" id="email" name="email" required></td>
-            </tr>
-            <tr>
-                <td><label for="password">Password:</label></td>
-                <td><input type="password" id="password" name="password" required></td>
-            </tr>
-        </table>
-        <button type="submit">Login</button>
-    </form>
+<h1>Library</h1>
+<br>
+<form action="${pageContext.request.contextPath}/login" method="post">
+    <table>
+        <tr>
+            <td><label for="email">Email:</label></td>
+            <td><input type="email" id="email" name="email" required></td>
+        </tr>
+        <tr>
+            <td><label for="password">Password:</label></td>
+            <td><input type="password" id="password" name="password" required></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button type="submit">Login</button></td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

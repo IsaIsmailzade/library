@@ -15,6 +15,10 @@ public class CreateUserValidator implements Validator<CreateUserDto> {
             validationResult.add(Error.of("invalid.phone", "Phone is invalid"));
         }
 
+        if (object.getPassword().length() < 8) {
+            validationResult.add(Error.of("invalid.password", "Password is too short"));
+        }
+
         return validationResult;
     }
 
