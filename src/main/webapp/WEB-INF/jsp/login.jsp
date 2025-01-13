@@ -21,17 +21,20 @@
 <form action="${pageContext.request.contextPath}/login" method="post">
     <table>
         <tr>
-            <td><label for="email">Email:</label></td>
-            <td><input type="email" id="email" name="email" required></td>
+            <td><label for="email"><fmt:message key="page.email"/></label></td>
+            <td><input type="email" id="email" name="email" value="${param.email}" required></td>
         </tr>
         <tr>
-            <td><label for="password">Password:</label></td>
+            <td><label for="password"><fmt:message key="page.password"/></label></td>
             <td><input type="password" id="password" name="password" required></td>
         </tr>
         <tr>
-            <td colspan="2"><button type="submit">Login</button></td>
+            <td colspan="2"><button type="submit"><fmt:message key="page.login.button"/></button></td>
         </tr>
     </table>
+    <a href="${pageContext.request.contextPath}/registration">
+        <fmt:message key="page.registration.button"/>
+    </a>
 </form>
 </body>
 </html>

@@ -7,6 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<%@ include file="header.jsp"%>
 
 <html>
 <head>
@@ -19,29 +22,32 @@
 <form action="${pageContext.request.contextPath}/registration" method="post">
     <table>
         <tr>
-            <td><label for="name">Name:</label></td>
+            <td><label for="name"><fmt:message key="page.name"/></label></td>
             <td><input type="text" id="name" name="name" required></td>
         </tr>
         <tr>
-            <td><label for="surname">Surname:</label></td>
+            <td><label for="surname"><fmt:message key="page.surname"/></label></td>
             <td><input type="text" id="surname" name="surname" required></td>
         </tr>
         <tr>
-            <td><label for="email">Email:</label></td>
+            <td><label for="email"><fmt:message key="page.email"/></label></td>
             <td><input type="email" id="email" name="email" required></td>
         </tr>
         <tr>
-            <td><label for="password">Password:</label></td>
+            <td><label for="password"><fmt:message key="page.password"/></label></td>
             <td><input type="password" id="password" name="password" required></td>
         </tr>
         <tr>
-            <td><label for="phone">Phone:</label></td>
+            <td><label for="phone"><fmt:message key="page.phone"/></label></td>
             <td><input type="tel" id="phone" name="phone" required></td>
         </tr>
         <tr>
-            <td colspan="2"><button type="submit">Register</button></td>
+            <td colspan="2"><button type="submit"><fmt:message key="page.registration.button"/></button></td>
         </tr>
     </table>
+    <a href="${pageContext.request.contextPath}/login">
+        <fmt:message key="page.login.button"/>
+    </a>
 </form>
 </body>
 </html>
