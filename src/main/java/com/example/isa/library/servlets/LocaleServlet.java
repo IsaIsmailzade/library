@@ -22,6 +22,11 @@ public class LocaleServlet extends HttpServlet {
         String prevPage = req.getHeader("referer");
         String page = prevPage != null ? prevPage : LOGIN;
 
-        resp.sendRedirect(page + "?lang=" + language);
+        page = page.replaceAll("(\\?|&)lang=[^&]*", "");
+
+        page = page.replaceAll("[&?]+$", "");
+
+        String separator = page.contains("?") ? "&" : "?";
+        resp.sendRedirect(page + separator + "lang=" + language);
     }
 }

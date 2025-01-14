@@ -9,13 +9,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Set;
 
-import static com.example.isa.library.util.UrlPath.LOGIN;
-import static com.example.isa.library.util.UrlPath.REGISTER;
+import static com.example.isa.library.util.UrlPath.*;
 
 @WebFilter("/*")
 public class AuthorizationFilter implements Filter {
 
-    private static final Set<String> PUBLIC_PATH = Set.of(REGISTER, LOGIN);
+    private static final Set<String> PUBLIC_PATH = Set.of(REGISTER, LOGIN, LOCALE);
     private static final Set<String> PUBLIC_RESOURCES = Set.of("/css/", "/js/", "/images/");
 
     private boolean isPublicResource(String requestURI) {
