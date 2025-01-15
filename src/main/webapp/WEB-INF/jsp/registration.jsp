@@ -48,6 +48,14 @@
     <a href="${pageContext.request.contextPath}/login">
         <fmt:message key="page.login.button"/>
     </a>
+    <c:if test="${not empty requestScope.errors}">
+        <div style="color: crimson">
+            <c:forEach var="error" items="${requestScope.errors}">
+                <br>
+                <span>${error.message}</span>
+            </c:forEach>
+        </div>
+    </c:if>
 </form>
 </body>
 </html>

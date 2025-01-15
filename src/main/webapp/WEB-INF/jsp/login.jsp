@@ -35,6 +35,12 @@
     <a href="${pageContext.request.contextPath}/registration">
         <fmt:message key="page.registration.button"/>
     </a>
+    <c:if test="${requestScope.errors}" var="error">
+        <div style="color: crimson">
+            <br>
+            ${error.mesage}
+        </div>
+    </c:if>
 </form>
 </body>
 </html>

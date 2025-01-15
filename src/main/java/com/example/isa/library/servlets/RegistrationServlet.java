@@ -2,6 +2,7 @@ package com.example.isa.library.servlets;
 
 import com.example.isa.library.dto.CreateUserDto;
 import com.example.isa.library.entity.Role;
+import com.example.isa.library.exception.ValidationException;
 import com.example.isa.library.service.UserService;
 import com.example.isa.library.util.JspHelper;
 import jakarta.servlet.ServletException;
@@ -36,7 +37,12 @@ public class RegistrationServlet extends HttpServlet {
                 .phone(req.getParameter("phone"))
                 .build();
 
-        userService.create(userDto);
-        resp.sendRedirect("/login");
+        try {
+            userService.create(userDto);
+            resp.sendRedirect("/login");
+        } catch (ValidationException e) {
+            req.setAttribute("errors", e.getErrors());
+            doGet(req, resp);
+        }
     }
 }
