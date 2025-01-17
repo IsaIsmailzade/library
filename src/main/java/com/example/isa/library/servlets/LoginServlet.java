@@ -1,6 +1,7 @@
 package com.example.isa.library.servlets;
 
 import com.example.isa.library.dto.UserDto;
+import com.example.isa.library.exception.ValidationException;
 import com.example.isa.library.service.UserService;
 import com.example.isa.library.util.JspHelper;
 import jakarta.servlet.ServletException;
@@ -28,12 +29,10 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         userService.login(req.getParameter("email"), req.getParameter("password"))
-                        .ifPresentOrElse(
-                                user -> onLoginSuccess(user, req, resp),
-                                () -> onLoginFail(req, resp)
-                        );
-//        req.setAttribute("errors", e.getErrors());
-//        doGet(req, resp);
+                .ifPresentOrElse(
+                        user -> onLoginSuccess(user, req, resp),
+                        () -> onLoginFail(req, resp)
+                );
     }
 
     @SneakyThrows

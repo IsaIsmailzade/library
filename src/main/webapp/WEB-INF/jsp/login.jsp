@@ -38,7 +38,7 @@
     <c:if test="${requestScope.errors}" var="error">
         <div style="color: crimson">
             <br>
-            ${error.mesage}
+            ${error.message}
         </div>
     </c:if>
 </form>

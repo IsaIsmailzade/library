@@ -5,7 +5,6 @@ import com.example.isa.library.util.ConnectionManager;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
-import org.eclipse.tags.shaded.org.apache.bcel.classfile.InnerClass;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -30,6 +29,26 @@ public class UserDao implements Dao<Long, Users> {
             SELECT * FROM users
             WHERE email = ? AND password = ?
             """;
+    private static final String FIND_BY_EMAIL_SQL = """
+            SELECT * FROM users
+            WHERE email = ?
+            """;
+
+    @SneakyThrows
+    public Optional<Users> findByEmail(String email) {
+        try (Connection connection = ConnectionManager.get();
+             var preparedStatement = connection.prepareStatement(FIND_BY_EMAIL_SQL)) {
+            preparedStatement.setObject(1, email);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            Users users = null;
+            if (resultSet.next()) {
+                users = buildEntity(resultSet);
+            }
+
+            return Optional.ofNullable(users);
+        }
+    }
 
     @SneakyThrows
     public Optional<Users> findByEmailAndPassword(String email, String password) {
