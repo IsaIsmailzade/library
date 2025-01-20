@@ -28,14 +28,13 @@ public class UserService {
     }
 
     @SneakyThrows
-    public Long create(CreateUserDto createUserDto) {
+    public void create(CreateUserDto createUserDto) {
         ValidationResult valid = createUserValidator.isValid(createUserDto);
         if (!valid.isValid()) {
             throw new ValidationException(valid.getErrors());
         }
-        Users users = createUserMapper.mapFrom(createUserDto);
+        Users users = createUserMapper. mapFrom(createUserDto);
         userDao.save(users);
-        return users.getId();
     }
 
     public static UserService getInstance() {

@@ -1,7 +1,6 @@
 package com.example.isa.library.servlets;
 
 import com.example.isa.library.dto.CreateUserDto;
-import com.example.isa.library.entity.Role;
 import com.example.isa.library.exception.ValidationException;
 import com.example.isa.library.service.UserService;
 import com.example.isa.library.util.JspHelper;

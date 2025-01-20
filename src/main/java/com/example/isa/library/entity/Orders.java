@@ -11,11 +11,11 @@ import java.time.LocalDate;
 @Builder
 public class Orders {
 
-    private Long id;
-    private Integer user_id;
-    private Integer book_id;
-    private Integer librarian_id;
-    private LocalDate issued_date;
-    private LocalDate return_date;
-    private Boolean returned = false;
+    Long id;
+    Integer user_id;
+    Integer book_id;
+    Integer librarian_id;
+    LocalDate issued_date;
+    LocalDate return_date;
+    Boolean returned = false;
 }

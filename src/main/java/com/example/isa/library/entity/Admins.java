@@ -7,8 +7,9 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 @Builder
-public class Librarians {
+public class Admins {
 
     Long id;
-    String name;
+    String email;
+    String password;
 }
