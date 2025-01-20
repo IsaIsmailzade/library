@@ -5,8 +5,9 @@ import lombok.Value;
 
 @Value
 @Builder
-public class BooksDto {
+public class CreateBookDto {
 
-    Long id;
     String title;
+    String author;
+    String description;
 }

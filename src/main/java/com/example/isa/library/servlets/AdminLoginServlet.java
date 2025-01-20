@@ -1,7 +1,6 @@
 package com.example.isa.library.servlets;
 
 import com.example.isa.library.dto.AdminDto;
-import com.example.isa.library.dto.UserDto;
 import com.example.isa.library.service.AdminService;
 import com.example.isa.library.util.JspHelper;
 import com.example.isa.library.util.UrlPath;
@@ -30,13 +29,13 @@ public class AdminLoginServlet extends HttpServlet {
 
     @SneakyThrows
     private void onLoginFail(HttpServletRequest req, HttpServletResponse resp) {
-        resp.sendRedirect("/login?error&email=" + req.getParameter("email"));
+        resp.sendRedirect("/adminLogin?error&email=" + req.getParameter("email"));
     }
 
     @SneakyThrows
     private void onLoginSuccess(AdminDto admin, HttpServletRequest req, HttpServletResponse resp) {
         req.getSession().setAttribute("admin", admin);
-        resp.sendRedirect("/admin");
+        resp.sendRedirect("/adminPage");
     }
 
     @Override

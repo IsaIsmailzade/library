@@ -18,7 +18,7 @@ public class BooksDao implements Dao<Long, Books> {
 
     private static final BooksDao INSTANCE = new BooksDao();
     private static final String SAVE_BOOK = """
-            INSERT INTO books (title) VALUES (?)
+            INSERT INTO books (title, author, description) VALUES (?, ?, ?)
             """;
     private static final String DELETE_BOOK = """
             DELETE FROM books WHERE title = ?
@@ -45,7 +45,9 @@ public class BooksDao implements Dao<Long, Books> {
     private Books buildBook(ResultSet resultSet) {
         return new Books(
                 resultSet.getObject("id", Long.class),
-                resultSet.getObject("title", String.class)
+                resultSet.getObject("title", String.class),
+                resultSet.getObject("author", String.class),
+                resultSet.getObject("description", String.class)
         );
     }
 
@@ -75,6 +77,8 @@ public class BooksDao implements Dao<Long, Books> {
         try (Connection connection = ConnectionManager.get();
              PreparedStatement preparedStatement = connection.prepareStatement(SAVE_BOOK, RETURN_GENERATED_KEYS)) {
             preparedStatement.setObject(1, entity.getTitle());
+            preparedStatement.setObject(2, entity.getAuthor());
+            preparedStatement.setObject(3, entity.getDescription());
             preparedStatement.executeUpdate();
 
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();

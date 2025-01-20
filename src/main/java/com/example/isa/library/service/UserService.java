@@ -33,7 +33,7 @@ public class UserService {
         if (!valid.isValid()) {
             throw new ValidationException(valid.getErrors());
         }
-        Users users = createUserMapper. mapFrom(createUserDto);
+        Users users = createUserMapper.mapFrom(createUserDto);
         userDao.save(users);
     }
 

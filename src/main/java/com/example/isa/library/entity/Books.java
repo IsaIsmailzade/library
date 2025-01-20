@@ -11,4 +11,6 @@ public class Books {
 
     Long id;
     String title;
+    String author;
+    String description;
 }

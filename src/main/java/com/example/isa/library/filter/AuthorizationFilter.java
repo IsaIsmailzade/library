@@ -1,5 +1,6 @@
 package com.example.isa.library.filter;
 
+import com.example.isa.library.dto.AdminDto;
 import com.example.isa.library.dto.UserDto;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
@@ -24,7 +25,7 @@ public class AuthorizationFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         String requestURI = ((HttpServletRequest) servletRequest).getRequestURI();
-        if (isPublicPath(requestURI) || isUserLoggedIn(servletRequest) || isPublicResource(requestURI)) {
+        if (isPublicPath(requestURI) || isUserLoggedIn(servletRequest) || isAdminLoggedIn(servletRequest) || isPublicResource(requestURI)) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
             String prevPage = ((HttpServletResponse) servletResponse).getHeader("referer");
@@ -35,6 +36,11 @@ public class AuthorizationFilter implements Filter {
     private boolean isUserLoggedIn(ServletRequest servletRequest) {
         UserDto user = (UserDto) ((HttpServletRequest) servletRequest).getSession().getAttribute("user");
         return  user != null;
+    }
+
+    private boolean isAdminLoggedIn(ServletRequest servletRequest) {
+        AdminDto adminDto = (AdminDto) ((HttpServletRequest) servletRequest).getSession().getAttribute("admin");
+        return  adminDto != null;
     }
 
     private boolean isPublicPath(String requestURI) {
