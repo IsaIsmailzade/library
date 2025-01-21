@@ -39,8 +39,8 @@ public class AuthorizationFilter implements Filter {
     }
 
     private boolean isAdminLoggedIn(ServletRequest servletRequest) {
-        AdminDto adminDto = (AdminDto) ((HttpServletRequest) servletRequest).getSession().getAttribute("admin");
-        return  adminDto != null;
+        AdminDto admin = (AdminDto) ((HttpServletRequest) servletRequest).getSession().getAttribute("admin");
+        return  admin != null;
     }
 
     private boolean isPublicPath(String requestURI) {

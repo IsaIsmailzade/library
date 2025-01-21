@@ -14,7 +14,7 @@
 <fmt:setLocale value="${requestScope.lang != null ? sessionScope.lang : (param.lang != null ? param.lang : 'en_US')}" />
 <fmt:setBundle basename="translations" />
 
-<c:if test="${not empty sessionScope.user}">
+<c:if test="${not empty sessionScope.user or not empty sessionScope.admin}">
     <div id="logout">
         <form action="${pageContext.request.contextPath}/logout" method="post">
             <button type="submit"><fmt:message key="page.logout.button" /></button>
