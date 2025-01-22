@@ -16,7 +16,7 @@
 </head>
 <body>
     <form method="get" action="${pageContext.request.contextPath}/catalog">
-        <h1>Книги в библиотеке:</h1>
+        <h1><fmt:message key="page.header.text"/></h1>
         <c:forEach items="${requestScope.books}" var="books">
             <li>
                 ${books.title}

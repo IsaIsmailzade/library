@@ -21,8 +21,9 @@ public class BooksDao implements Dao<Long, Books> {
             INSERT INTO books (title, author, description) VALUES (?, ?, ?)
             """;
     private static final String DELETE_BOOK = """
-            DELETE FROM books WHERE title = ?
+            DELETE FROM books WHERE id = ?
             """;
+    private static final String FIND_BOOK_BY_ID = "SELECT * FROM books WHERE id = ?";
     private static final String FIND_ALL_BOOKS = "SELECT * FROM books";
 
     @Override
@@ -53,7 +54,18 @@ public class BooksDao implements Dao<Long, Books> {
 
     @Override
     public Optional<Books> findById(Long id) {
-        return Optional.empty();
+        try (Connection connection = ConnectionManager.get();
+             var prepareStatement = connection.prepareStatement(FIND_BOOK_BY_ID)) {
+            prepareStatement.setObject(1, id);
+            ResultSet resultSet = prepareStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return Optional.of(buildBook(resultSet));
+            }
+            return Optional.empty();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @SneakyThrows
@@ -62,7 +74,13 @@ public class BooksDao implements Dao<Long, Books> {
         try (Connection connection = ConnectionManager.get();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_BOOK)) {
             preparedStatement.setObject(1, id);
-            return preparedStatement.executeUpdate() > 0;
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected == 0) {
+                throw new RuntimeException("No book found with the given ID");
+            }
+            return rowsAffected > 0;
         }
     }
 
@@ -85,7 +103,7 @@ public class BooksDao implements Dao<Long, Books> {
             generatedKeys.next();
             entity.setId(generatedKeys.getObject("id", Long.class));
         }
-        return null;
+        return entity;
     }
 
     public static BooksDao getInstance() {

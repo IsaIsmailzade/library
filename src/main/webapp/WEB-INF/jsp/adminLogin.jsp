@@ -11,19 +11,18 @@
 <body>
 <div class="login-container">
     <div class="login-box">
-        <h1>Welcome, Admin!</h1>
-
-        <h2>Please Log In</h2>
+        <h1><fmt:message key="page.admin.welcome"/></h1>
+        <h2><fmt:message key="page.login.request"/></h2>
         <form action="${pageContext.request.contextPath}/adminLogin" method="post">
             <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email"><fmt:message key="page.email"/></label>
                 <input type="email" id="email" name="email" value="${param.email}" required>
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password"><fmt:message key="page.password"/></label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <button type="submit" class="btn-submit">Sign In</button>
+            <button type="submit" class="btn-submit"><fmt:message key="page.login.button"/></button>
             <c:if test="${requestScope.errors}" var="error">
                 <div class="error-message">
                         ${error.message}

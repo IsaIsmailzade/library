@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Isa
-  Date: 20.01.2025
-  Time: 12:34
-  To change this template use File | Settings | File Templates.
---%>
+<%-- Created by IntelliJ IDEA. User: Isa Date: 20.01.2025 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -12,31 +6,51 @@
 
 <html>
 <head>
-    <title>Admin</title>
+    <title>Admin Page</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/adminPage.css">
 </head>
 <body>
-    <form action="${pageContext.request.contextPath}/adminPage" method="post">
-        <h2><fmt:message key="page.admin.adding"/></h2>
-        <fmt:message key="page.admin.book.information"/>
-        <br>
-        <tr>
-            <td><label for="title"><fmt:message key="page.admin.input.title"/></label></td>
-            <td><input type="text" id="title" name="title"></td>
-        </tr>
-        <br>
-        <tr>
-            <td><label for="author"><fmt:message key="page.admin.input.author"/></label></td>
-            <td><input type="text" id="author" name="author"></td>
-        </tr>
-        <br>
-        <tr>
-            <td><label for="description"><fmt:message key="page.admin.input.description"/></label></td>
-            <td><input type="text" id="description" name="description" required></td>
-        </tr>
-        <button type="submit"><fmt:message key="page.admin.add.button"/></button>
-        <br>
-        <br>
-        <h2><fmt:message key="page.admin.deleting"/></h2>
-    </form>
+<div class="admin-container">
+    <h1 class="admin-title"><fmt:message key="page.admin.book.information"/></h1>
+    <div class="admin-box">
+        <form action="${pageContext.request.contextPath}/adminPage" method="post">
+            <h2 class="section-title"><fmt:message key="page.admin.adding" /></h2>
+            <input type="hidden" name="action" value="add">
+            <div class="form-group">
+                <label for="title"><fmt:message key="page.admin.input.title" /></label>
+                <input type="text" id="title" name="title">
+            </div>
+            <div class="form-group">
+                <label for="author"><fmt:message key="page.admin.input.author" /></label>
+                <input type="text" id="author" name="author">
+            </div>
+            <div class="form-group">
+                <label for="description"><fmt:message key="page.admin.input.description" /></label>
+                <textarea id="description" name="description"></textarea>
+            </div>
+            <button type="submit" class="btn-submit"><fmt:message key="page.admin.add.button" /></button>
+        </form>
+    </div>
+
+    <div class="admin-box">
+        <form action="${pageContext.request.contextPath}/adminPage" method="post">
+            <h2 class="section-title"><fmt:message key="page.admin.deleting" /></h2>
+            <input type="hidden" name="action" value="delete">
+            <div class="form-group">
+                <label for="id"><fmt:message key="page.admin.input.id" /></label>
+                <input type="text" id="id" name="id">
+            </div>
+            <button type="submit" class="btn-submit"><fmt:message key="page.admin.delete.button" /></button>
+        </form>
+    </div>
+
+    <c:if test="${not empty requestScope.errors}">
+        <div class="error-message">
+            <c:forEach var="error" items="${requestScope.errors}">
+                <span>${error.message}</span><br>
+            </c:forEach>
+        </div>
+    </c:if>
+</div>
 </body>
 </html>

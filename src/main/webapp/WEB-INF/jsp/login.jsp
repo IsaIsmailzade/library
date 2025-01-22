@@ -1,13 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Isa
-  Date: 14.12.2024
-  Time: 22:06
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@ include file="header.jsp"%>
 
 <html>
@@ -16,31 +8,30 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
 </head>
 <body>
-<h1>Library</h1>
-<br>
-<form action="${pageContext.request.contextPath}/login" method="post">
-    <table>
-        <tr>
-            <td><label for="email"><fmt:message key="page.email"/></label></td>
-            <td><input type="email" id="email" name="email" value="${param.email}" required></td>
-        </tr>
-        <tr>
-            <td><label for="password"><fmt:message key="page.password"/></label></td>
-            <td><input type="password" id="password" name="password" required></td>
-        </tr>
-        <tr>
-            <td colspan="2"><button type="submit"><fmt:message key="page.login.button"/></button></td>
-        </tr>
-    </table>
-    <a href="${pageContext.request.contextPath}/registration">
-        <fmt:message key="page.registration.button"/>
-    </a>
-    <c:if test="${requestScope.errors}" var="error">
-        <div style="color: crimson">
-            <br>
-            ${error.message}
-        </div>
-    </c:if>
-</form>
+<div class="login-container">
+    <div class="login-box">
+        <h1><fmt:message key="page.library.text"/></h1>
+        <h2><fmt:message key="page.login.request"/></h2>
+        <form action="${pageContext.request.contextPath}/login" method="post">
+            <div class="form-group">
+                <label for="email"><fmt:message key="page.email"/></label>
+                <input type="email" id="email" name="email" value="${param.email}" required>
+            </div>
+            <div class="form-group">
+                <label for="password"><fmt:message key="page.password"/></label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn-submit"><fmt:message key="page.login.button"/></button>
+            <a href="${pageContext.request.contextPath}/registration" class="btn-link">
+                <fmt:message key="page.registration.button"/>
+            </a>
+            <c:if test="${requestScope.errors}" var="error">
+                <div class="error-message">
+                    <span>${error.message}</span><br>
+                </div>
+            </c:if>
+        </form>
+    </div>
+</div>
 </body>
 </html>

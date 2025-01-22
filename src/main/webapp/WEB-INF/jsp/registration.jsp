@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Isa
-  Date: 12.12.2024
-  Time: 11:10
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -17,45 +10,44 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/registration.css">
 </head>
 <body>
-<h1>Library</h1>
-<br>
-<form action="${pageContext.request.contextPath}/registration" method="post">
-    <table>
-        <tr>
-            <td><label for="name"><fmt:message key="page.name"/></label></td>
-            <td><input type="text" id="name" name="name" required></td>
-        </tr>
-        <tr>
-            <td><label for="surname"><fmt:message key="page.surname"/></label></td>
-            <td><input type="text" id="surname" name="surname" required></td>
-        </tr>
-        <tr>
-            <td><label for="email"><fmt:message key="page.email"/></label></td>
-            <td><input type="email" id="email" name="email" required></td>
-        </tr>
-        <tr>
-            <td><label for="password"><fmt:message key="page.password"/></label></td>
-            <td><input type="password" id="password" name="password" required></td>
-        </tr>
-        <tr>
-            <td><label for="phone"><fmt:message key="page.phone"/></label></td>
-            <td><input type="tel" id="phone" name="phone" required></td>
-        </tr>
-        <tr>
-            <td colspan="2"><button type="submit"><fmt:message key="page.registration.button"/></button></td>
-        </tr>
-    </table>
-    <a href="${pageContext.request.contextPath}/login">
-        <fmt:message key="page.login.button"/>
-    </a>
-    <c:if test="${not empty requestScope.errors}">
-        <div style="color: crimson">
-            <c:forEach var="error" items="${requestScope.errors}">
-                <br>
-                <span>${error.message}</span>
-            </c:forEach>
-        </div>
-    </c:if>
-</form>
+<div class="registration-container">
+    <div class="registration-box">
+        <h1><fmt:message key="page.library.text"/></h1>
+        <h2><fmt:message key="page.register.request"/></h2>
+        <form action="${pageContext.request.contextPath}/registration" method="post">
+            <div class="form-group">
+                <label for="name"><fmt:message key="page.name"/></label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="surname"><fmt:message key="page.surname"/></label>
+                <input type="text" id="surname" name="surname" required>
+            </div>
+            <div class="form-group">
+                <label for="email"><fmt:message key="page.email"/></label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password"><fmt:message key="page.password"/></label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="phone"><fmt:message key="page.phone"/></label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <button type="submit" class="btn-submit"><fmt:message key="page.registration.button"/></button>
+            <a href="${pageContext.request.contextPath}/login" class="btn-link">
+                <fmt:message key="page.login.button"/>
+            </a>
+            <c:if test="${not empty requestScope.errors}">
+                <div class="error-message">
+                    <c:forEach var="error" items="${requestScope.errors}">
+                        <span>${error.message}</span><br>
+                    </c:forEach>
+                </div>
+            </c:if>
+        </form>
+    </div>
+</div>
 </body>
 </html>
