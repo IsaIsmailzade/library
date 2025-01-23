@@ -11,6 +11,7 @@ import com.example.isa.library.validator.DeleteBookValidator;
 import com.example.isa.library.validator.ValidationResult;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -24,9 +25,21 @@ public class BooksService {
     public List<BookDto> findAll() {
         return booksDao.findAll().stream()
                 .map(books -> BookDto.builder()
+                        .id(books.getId())
                         .title(books.getTitle())
+                        .author(books.getAuthor())
+                        .description(books.getDescription())
+                        .downloadFb2(books.getDownloadFb2())
+                        .downloadEpub(books.getDownloadEpub())
+                        .downloadPdf(books.getDownloadPdf())
+                        .downloadDocx(books.getDownloadDocx())
+                        .downloadMobi(books.getDownloadMobi())
                         .build())
                 .collect(Collectors.toList());
+    }
+
+    public Optional<Books> findById(Long id) {
+        return booksDao.findById(id);
     }
 
     public void create(CreateBookDto createBookDto) {

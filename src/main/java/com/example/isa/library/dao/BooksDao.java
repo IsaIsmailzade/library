@@ -48,7 +48,12 @@ public class BooksDao implements Dao<Long, Books> {
                 resultSet.getObject("id", Long.class),
                 resultSet.getObject("title", String.class),
                 resultSet.getObject("author", String.class),
-                resultSet.getObject("description", String.class)
+                resultSet.getObject("description", String.class),
+                resultSet.getObject("download_fb2", String.class),
+                resultSet.getObject("download_epub", String.class),
+                resultSet.getObject("download_pdf", String.class),
+                resultSet.getObject("download_docx", String.class),
+                resultSet.getObject("download_mobi", String.class)
         );
     }
 

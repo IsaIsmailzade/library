@@ -4,7 +4,6 @@ import com.example.isa.library.dto.CreateBookDto;
 import com.example.isa.library.exception.ValidationException;
 import com.example.isa.library.service.BooksService;
 import com.example.isa.library.util.JspHelper;
-import com.example.isa.library.util.UrlPath;
 import com.example.isa.library.validator.Error;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -15,7 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import static com.example.isa.library.util.UrlPath.*;
+import static com.example.isa.library.util.UrlPath.ADMIN;
 
 @WebServlet(ADMIN)
 public class AdminPageServlet extends HttpServlet {
@@ -63,6 +62,11 @@ public class AdminPageServlet extends HttpServlet {
                 .title(req.getParameter("title"))
                 .author(req.getParameter("author"))
                 .description(req.getParameter("description"))
+                .downloadFb2(req.getParameter("download_fb2"))
+                .downloadEpub(req.getParameter("download_epub"))
+                .downloadPdf(req.getParameter("download_pdf"))
+                .downloadDocx(req.getParameter("download_docx"))
+                .downloadMobi(req.getParameter("download_mobi"))
                 .build();
 
         try {

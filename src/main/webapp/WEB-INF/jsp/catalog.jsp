@@ -17,9 +17,9 @@
 <body>
     <form method="get" action="${pageContext.request.contextPath}/catalog">
         <h1><fmt:message key="page.header.text"/></h1>
-        <c:forEach items="${requestScope.books}" var="books">
+        <c:forEach items="${requestScope.books}" var="book">
             <li>
-                ${books.title}
+                <a href="${pageContext.request.contextPath}/bookPage?bookId=${book.id}">${book.title}</a>
             </li>
         </c:forEach>
     </form>

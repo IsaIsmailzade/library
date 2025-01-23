@@ -28,6 +28,27 @@
                 <label for="description"><fmt:message key="page.admin.input.description" /></label>
                 <textarea id="description" name="description"></textarea>
             </div>
+            <h2>Links for download:</h2>
+            <div>
+                <label for="FB2">FB2</label>
+                <input type="text" id="FB2" name="FB2">
+            </div>
+            <div>
+                <label for="EPUB">EPUB</label>
+                <input type="text" id="EPUB" name="EPUB">
+            </div>
+            <div>
+                <label for="PDF">PDF</label>
+                <input type="text" id="PDF" name="PDF">
+            </div>
+            <div>
+                <label for="Word">Word</label>
+                <input type="text" id="Word" name="Word">
+            </div>
+            <div>
+                <label for="MOBI">MOBI</label>
+                <input type="text" id="MOBI" name="MOBI">
+            </div>
             <button type="submit" class="btn-submit"><fmt:message key="page.admin.add.button" /></button>
         </form>
     </div>
