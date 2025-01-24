@@ -15,6 +15,11 @@ public class CreateBookMapper implements Mapper<CreateBookDto, Books> {
                 .title(createBookDto.getTitle())
                 .author(createBookDto.getAuthor())
                 .description(createBookDto.getDescription())
+                .downloadFb2(createBookDto.getDownloadFb2())
+                .downloadEpub(createBookDto.getDownloadEpub())
+                .downloadPdf(createBookDto.getDownloadPdf())
+                .downloadDocx(createBookDto.getDownloadDocx())
+                .downloadMobi(createBookDto.getDownloadMobi())
                 .build();
     }
 }

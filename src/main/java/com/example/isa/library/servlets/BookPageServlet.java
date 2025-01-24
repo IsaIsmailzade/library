@@ -12,7 +12,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
 
-@WebServlet("/bookPage")
+import static com.example.isa.library.util.UrlPath.BOOK_PAGE;
+
+@WebServlet(BOOK_PAGE)
 public class BookPageServlet extends HttpServlet {
 
     private final BooksService booksService = BooksService.getInstance();

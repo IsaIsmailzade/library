@@ -20,12 +20,12 @@ public class UserDao implements Dao<Long, Users> {
 
     private static final UserDao INSTANCE = new UserDao();
 
-    private static final String FIND_ALL_SQL = "SELECT * FROM users";
-    private static final String FIND_BY_ID_SQL = "SELECT * FROM users WHERE id = ?";
-    private static final String SAVE_SQL = """
+    private static final String FIND_ALL = "SELECT * FROM users";
+    private static final String FIND_BY_ID = "SELECT * FROM users WHERE id = ?";
+    private static final String SAVE = """
             INSERT INTO users (name, surname, email, password, phone) VALUES (?, ?, ?, ?, ?)
             """;
-    private static final String FIND_BY_EMAIL_AND_PASSWORD_SQL = """
+    private static final String FIND_BY_EMAIL_AND_PASSWORD = """
             SELECT * FROM users
             WHERE email = ? AND password = ?
             """;
@@ -53,7 +53,7 @@ public class UserDao implements Dao<Long, Users> {
     @SneakyThrows
     public Optional<Users> findByEmailAndPassword(String email, String password) {
         try (Connection connection = ConnectionManager.get();
-             var preparedStatement = connection.prepareStatement(FIND_BY_EMAIL_AND_PASSWORD_SQL)) {
+             var preparedStatement = connection.prepareStatement(FIND_BY_EMAIL_AND_PASSWORD)) {
             preparedStatement.setObject(1, email);
             preparedStatement.setObject(2, password);
 
@@ -80,7 +80,7 @@ public class UserDao implements Dao<Long, Users> {
     @Override
     public List<Users> findAll() {
         try (Connection connection = ConnectionManager.get();
-             var prepareStatement = connection.prepareStatement(FIND_ALL_SQL)) {
+             var prepareStatement = connection.prepareStatement(FIND_ALL)) {
             ResultSet resultSet = prepareStatement.executeQuery();
 
             List<Users> users = new ArrayList<>();
@@ -96,7 +96,7 @@ public class UserDao implements Dao<Long, Users> {
 
     public List<Users> findUserById(Long id) {
         try (Connection connection = ConnectionManager.get();
-             var prepareStatement = connection.prepareStatement(FIND_BY_ID_SQL)) {
+             var prepareStatement = connection.prepareStatement(FIND_BY_ID)) {
             ResultSet resultSet = prepareStatement.executeQuery();
 
             prepareStatement.setObject(1, id);
@@ -142,7 +142,7 @@ public class UserDao implements Dao<Long, Users> {
     @Override
     public Users save(Users entity) {
         try (Connection connection = ConnectionManager.get();
-             var preparedStatement = connection.prepareStatement(SAVE_SQL, RETURN_GENERATED_KEYS)) {
+             var preparedStatement = connection.prepareStatement(SAVE, RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setObject(1, entity.getName());
             preparedStatement.setObject(2, entity.getSurname());

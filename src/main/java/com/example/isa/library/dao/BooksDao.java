@@ -2,6 +2,8 @@ package com.example.isa.library.dao;
 
 import com.example.isa.library.entity.Books;
 import com.example.isa.library.util.ConnectionManager;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 
 import java.sql.Connection;
@@ -14,11 +16,13 @@ import java.util.Optional;
 
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class BooksDao implements Dao<Long, Books> {
 
     private static final BooksDao INSTANCE = new BooksDao();
     private static final String SAVE_BOOK = """
-            INSERT INTO books (title, author, description) VALUES (?, ?, ?)
+            INSERT INTO books (title, author, description, download_fb2, download_epub, download_pdf, download_docx, download_mobi)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             """;
     private static final String DELETE_BOOK = """
             DELETE FROM books WHERE id = ?
@@ -102,6 +106,11 @@ public class BooksDao implements Dao<Long, Books> {
             preparedStatement.setObject(1, entity.getTitle());
             preparedStatement.setObject(2, entity.getAuthor());
             preparedStatement.setObject(3, entity.getDescription());
+            preparedStatement.setObject(4, entity.getDownloadFb2());
+            preparedStatement.setObject(5, entity.getDownloadEpub());
+            preparedStatement.setObject(6, entity.getDownloadPdf());
+            preparedStatement.setObject(7, entity.getDownloadDocx());
+            preparedStatement.setObject(8, entity.getDownloadMobi());
             preparedStatement.executeUpdate();
 
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();

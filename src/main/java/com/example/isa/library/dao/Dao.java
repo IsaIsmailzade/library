@@ -3,15 +3,15 @@ package com.example.isa.library.dao;
 import java.util.List;
 import java.util.Optional;
 
-public interface Dao <K, T> {
+public interface Dao<K, T> {
 
-     List<T> findAll();
+    List<T> findAll();
 
-     Optional<T> findById(K id);
+    Optional<T> findById(K id);
 
-     boolean delete(K id);
+    boolean delete(K id);
 
-     void update(T entity);
+    void update(T entity);
 
-     T save(T entity);
+    T save(T entity);
 }

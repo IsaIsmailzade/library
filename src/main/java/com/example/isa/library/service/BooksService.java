@@ -4,9 +4,9 @@ import com.example.isa.library.dao.BooksDao;
 import com.example.isa.library.dto.BookDto;
 import com.example.isa.library.dto.CreateBookDto;
 import com.example.isa.library.entity.Books;
-import com.example.isa.library.validator.Error;
 import com.example.isa.library.exception.ValidationException;
 import com.example.isa.library.mapper.CreateBookMapper;
+import com.example.isa.library.validator.CreateBookValidator;
 import com.example.isa.library.validator.DeleteBookValidator;
 import com.example.isa.library.validator.ValidationResult;
 
@@ -21,6 +21,7 @@ public class BooksService {
     private final BooksDao booksDao = BooksDao.getInstance();
     CreateBookMapper createBookMapper = CreateBookMapper.getINSTANCE();
     DeleteBookValidator deleteBookValidator = DeleteBookValidator.getINSTANCE();
+    CreateBookValidator createBookValidator = CreateBookValidator.getINSTANCE();
 
     public List<BookDto> findAll() {
         return booksDao.findAll().stream()
@@ -43,6 +44,10 @@ public class BooksService {
     }
 
     public void create(CreateBookDto createBookDto) {
+        ValidationResult validationResult = createBookValidator.isValid(createBookDto);
+        if (!validationResult.isValid()) {
+            throw new ValidationException(validationResult.getErrors());
+        }
         Books books = createBookMapper.mapFrom(createBookDto);
         booksDao.save(books);
     }
@@ -52,10 +57,6 @@ public class BooksService {
 
         if (!validationResult.isValid()) {
             throw new ValidationException(validationResult.getErrors());
-        }
-
-        if (booksDao.findById(id).isEmpty()) {
-            throw new ValidationException(List.of(Error.of("bookId.notFound", "Book with the given ID was not found")));
         }
 
         boolean deleted = booksDao.delete(id);

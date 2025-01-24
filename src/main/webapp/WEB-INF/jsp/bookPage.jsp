@@ -21,11 +21,21 @@
             <p>${book.description}</p>
         </div>
         <br>
-        <a href="${book.downloadFb2}">FB2</a>
-        <a href="${book.downloadEpub}">EPUB</a>
-        <a href="${book.downloadPdf}">PDF</a>
-        <a href="${book.downloadDocx}">Word</a>
-        <a href="${book.downloadMobi}">MOBI</a>
+        <c:if test="${not empty book.downloadFb2}">
+            <a href="${book.downloadFb2}">FB2</a>
+        </c:if>
+        <c:if test="${not empty book.downloadEpub}">
+            <a href="${book.downloadEpub}">EPUB</a>
+        </c:if>
+        <c:if test="${not empty book.downloadPdf}">
+            <a href="${book.downloadPdf}">PDF</a>
+        </c:if>
+        <c:if test="${not empty book.downloadDocx}">
+            <a href="${book.downloadDocx}">Word</a>
+        </c:if>
+        <c:if test="${not empty book.downloadMobi}">
+            <a href="${book.downloadMobi}">MOBI</a>
+        </c:if>
         <br>
     <a href="${pageContext.request.contextPath}/catalog"><fmt:message key="page.back.button"/></a>
 </body>

@@ -1,7 +1,6 @@
 package com.example.isa.library.servlets;
 
 import com.example.isa.library.dto.UserDto;
-import com.example.isa.library.exception.ValidationException;
 import com.example.isa.library.service.UserService;
 import com.example.isa.library.util.JspHelper;
 import jakarta.servlet.ServletException;

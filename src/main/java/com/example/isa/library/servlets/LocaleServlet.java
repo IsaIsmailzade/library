@@ -8,9 +8,10 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+import static com.example.isa.library.util.UrlPath.LOCALE;
 import static com.example.isa.library.util.UrlPath.LOGIN;
 
-@WebServlet("/locale")
+@WebServlet(LOCALE)
 public class LocaleServlet extends HttpServlet {
 
     @Override

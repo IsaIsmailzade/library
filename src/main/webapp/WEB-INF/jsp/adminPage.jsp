@@ -28,40 +28,53 @@
                 <label for="description"><fmt:message key="page.admin.input.description" /></label>
                 <textarea id="description" name="description"></textarea>
             </div>
-            <h2>Links for download:</h2>
-            <div>
-                <label for="FB2">FB2</label>
-                <input type="text" id="FB2" name="FB2">
+
+            <h2 class="section-title"><fmt:message key="page.admin.links.title"/></h2>
+            <div class="download-links">
+                <div class="form-group">
+                    <label for="downloadFb2">FB2</label>
+                    <input type="text" id="downloadFb2" name="downloadFb2">
+                </div>
+                <div class="form-group">
+                    <label for="downloadEpub">EPUB</label>
+                    <input type="text" id="downloadEpub" name="downloadEpub">
+                </div>
+                <div class="form-group">
+                    <label for="downloadPdf">PDF</label>
+                    <input type="text" id="downloadPdf" name="downloadPdf">
+                </div>
+                <div class="form-group">
+                    <label for="downloadDocx">Word</label>
+                    <input type="text" id="downloadDocx" name="downloadDocx">
+                </div>
+                <div class="form-group">
+                    <label for="downloadMobi">MOBI</label>
+                    <input type="text" id="downloadMobi" name="downloadMobi">
+                </div>
             </div>
-            <div>
-                <label for="EPUB">EPUB</label>
-                <input type="text" id="EPUB" name="EPUB">
-            </div>
-            <div>
-                <label for="PDF">PDF</label>
-                <input type="text" id="PDF" name="PDF">
-            </div>
-            <div>
-                <label for="Word">Word</label>
-                <input type="text" id="Word" name="Word">
-            </div>
-            <div>
-                <label for="MOBI">MOBI</label>
-                <input type="text" id="MOBI" name="MOBI">
-            </div>
-            <button type="submit" class="btn-submit"><fmt:message key="page.admin.add.button" /></button>
+            <button type="submit" class="btn-submit"><fmt:message key="page.admin.add.button"/></button>
+            <c:if test="${not empty requestScope.add}">
+                <div class="add-message">
+                        ${requestScope.add}
+                </div>
+            </c:if>
         </form>
     </div>
 
     <div class="admin-box">
         <form action="${pageContext.request.contextPath}/adminPage" method="post">
-            <h2 class="section-title"><fmt:message key="page.admin.deleting" /></h2>
+            <h2 class="section-title"><fmt:message key="page.admin.deleting"/></h2>
             <input type="hidden" name="action" value="delete">
             <div class="form-group">
-                <label for="id"><fmt:message key="page.admin.input.id" /></label>
+                <label for="id"><fmt:message key="page.admin.input.id"/></label>
                 <input type="text" id="id" name="id">
             </div>
-            <button type="submit" class="btn-submit"><fmt:message key="page.admin.delete.button" /></button>
+            <button type="submit" class="btn-submit"><fmt:message key="page.admin.delete.button"/></button>
+            <c:if test="${not empty requestScope.delete}">
+                <div class="delete-message">
+                        ${requestScope.delete}
+                </div>
+            </c:if>
         </form>
     </div>
 

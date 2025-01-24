@@ -13,7 +13,9 @@ import lombok.SneakyThrows;
 
 import java.io.IOException;
 
-@WebServlet(UrlPath.ADMIN_LOGIN)
+import static com.example.isa.library.util.UrlPath.*;
+
+@WebServlet(ADMIN_LOGIN)
 public class AdminLoginServlet extends HttpServlet {
 
     AdminService adminService = AdminService.getINSTANCE();

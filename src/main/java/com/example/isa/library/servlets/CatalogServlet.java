@@ -1,6 +1,5 @@
 package com.example.isa.library.servlets;
 
-import com.example.isa.library.dao.BooksDao;
 import com.example.isa.library.service.BooksService;
 import com.example.isa.library.util.JspHelper;
 import jakarta.servlet.ServletException;
@@ -11,7 +10,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/catalog")
+import static com.example.isa.library.util.UrlPath.CATALOG;
+
+@WebServlet(CATALOG)
 public class CatalogServlet extends HttpServlet {
 
     BooksService booksService = BooksService.getInstance();

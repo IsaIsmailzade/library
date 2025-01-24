@@ -4,7 +4,6 @@ import com.example.isa.library.dto.CreateBookDto;
 import com.example.isa.library.exception.ValidationException;
 import com.example.isa.library.service.BooksService;
 import com.example.isa.library.util.JspHelper;
-import com.example.isa.library.validator.Error;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -12,7 +11,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.List;
 
 import static com.example.isa.library.util.UrlPath.ADMIN;
 
@@ -43,15 +41,11 @@ public class AdminPageServlet extends HttpServlet {
         try {
             Long idParam = Long.parseLong(id);
             booksService.delete(idParam);
-            resp.sendRedirect("/adminPage");
+            req.setAttribute("delete", "Book was successfully deleted");
+            req.getRequestDispatcher(JspHelper.getPath("adminPage"))
+                    .forward(req, resp);
         } catch (ValidationException e) {
             req.setAttribute("errors", e.getErrors());
-            doGet(req, resp);
-        } catch (NumberFormatException e) {
-            req.setAttribute("errors", List.of(Error.of("bookId.invalid", "Invalid book ID format")));
-            doGet(req, resp);
-        } catch (RuntimeException e) {
-            req.setAttribute("errors", List.of(Error.of("bookId.notFound", "Book with the given ID was not found or could not be deleted")));
             doGet(req, resp);
         }
     }
@@ -62,16 +56,18 @@ public class AdminPageServlet extends HttpServlet {
                 .title(req.getParameter("title"))
                 .author(req.getParameter("author"))
                 .description(req.getParameter("description"))
-                .downloadFb2(req.getParameter("download_fb2"))
-                .downloadEpub(req.getParameter("download_epub"))
-                .downloadPdf(req.getParameter("download_pdf"))
-                .downloadDocx(req.getParameter("download_docx"))
-                .downloadMobi(req.getParameter("download_mobi"))
+                .downloadFb2(req.getParameter("downloadFb2"))
+                .downloadEpub(req.getParameter("downloadEpub"))
+                .downloadPdf(req.getParameter("downloadPdf"))
+                .downloadDocx(req.getParameter("downloadDocx"))
+                .downloadMobi(req.getParameter("downloadMobi"))
                 .build();
 
         try {
             booksService.create(createBookDto);
-            resp.sendRedirect("/adminPage");
+            req.setAttribute("add", "Book was successfully added");
+            req.getRequestDispatcher(JspHelper.getPath("adminPage"))
+                    .forward(req, resp);
         } catch (ValidationException e) {
             req.setAttribute("errors", e.getErrors());
             doGet(req, resp);

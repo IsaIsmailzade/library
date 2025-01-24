@@ -1,9 +1,10 @@
 package com.example.isa.library.dao;
 
 import com.example.isa.library.entity.Admins;
-import com.example.isa.library.entity.Users;
 import com.example.isa.library.util.ConnectionManager;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 
 import java.sql.Connection;
@@ -12,12 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class AdminDao implements Dao<Long, Admins> {
 
     @Getter
     private static final AdminDao INSTANCE = new AdminDao();
-    private static final String FIND_ALL_SQL = "SELECT * FROM admins";
-    private static final String FIND_BY_EMAIL_AND_PASSWORD_SQL = """
+    private static final String FIND_ALL = "SELECT * FROM admins";
+    private static final String FIND_BY_EMAIL_AND_PASSWORD = """
             SELECT * FROM admins
             WHERE email = ? AND password = ?
             """;
@@ -26,7 +28,7 @@ public class AdminDao implements Dao<Long, Admins> {
     @SneakyThrows
     public List<Admins> findAll() {
         try (Connection connection = ConnectionManager.get();
-             var preparedStatement = connection.prepareStatement(FIND_ALL_SQL)) {
+             var preparedStatement = connection.prepareStatement(FIND_ALL)) {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             List<Admins> adminsList = new ArrayList<>();
@@ -40,7 +42,7 @@ public class AdminDao implements Dao<Long, Admins> {
     @SneakyThrows
     public Optional<Admins> findByEmailAndPassword(String email, String password) {
         try (Connection connection = ConnectionManager.get();
-             var preparedStatement = connection.prepareStatement(FIND_BY_EMAIL_AND_PASSWORD_SQL)) {
+             var preparedStatement = connection.prepareStatement(FIND_BY_EMAIL_AND_PASSWORD)) {
             preparedStatement.setObject(1, email);
             preparedStatement.setObject(2, password);
 
@@ -64,7 +66,7 @@ public class AdminDao implements Dao<Long, Admins> {
 
     @SneakyThrows
     private Admins buildAdmin(ResultSet resultSet) {
-        return new Admins (
+        return new Admins(
                 resultSet.getObject("id", Long.class),
                 resultSet.getObject("email", String.class),
                 resultSet.getObject("password", String.class)
