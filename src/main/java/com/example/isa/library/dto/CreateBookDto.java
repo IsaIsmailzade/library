@@ -15,4 +15,5 @@ public class CreateBookDto {
     String downloadPdf;
     String downloadDocx;
     String downloadMobi;
+    String read;
 }

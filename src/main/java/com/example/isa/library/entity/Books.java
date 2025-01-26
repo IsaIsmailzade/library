@@ -18,4 +18,5 @@ public class Books {
     String downloadPdf;
     String downloadDocx;
     String downloadMobi;
+    String read;
 }

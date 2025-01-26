@@ -35,6 +35,7 @@ public class BooksService {
                         .downloadPdf(books.getDownloadPdf())
                         .downloadDocx(books.getDownloadDocx())
                         .downloadMobi(books.getDownloadMobi())
+                        .read(books.getRead())
                         .build())
                 .collect(Collectors.toList());
     }

@@ -20,6 +20,7 @@ public class CreateBookMapper implements Mapper<CreateBookDto, Books> {
                 .downloadPdf(createBookDto.getDownloadPdf())
                 .downloadDocx(createBookDto.getDownloadDocx())
                 .downloadMobi(createBookDto.getDownloadMobi())
+                .read(createBookDto.getRead())
                 .build();
     }
 }

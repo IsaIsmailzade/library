@@ -35,6 +35,10 @@ public class CreateBookValidator implements Validator<CreateBookDto> {
         if (object.getDownloadMobi().matches(LINK_PATTERN)) {
             validationResult.add(Error.of("invalid.url", "Invalid MOBI download link."));
         }
+
+        if (object.getDownloadMobi().matches(LINK_PATTERN)) {
+            validationResult.add(Error.of("invalid.url", "Invalid link for reading."));
+        }
         return validationResult;
     }
 }

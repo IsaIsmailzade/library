@@ -1,42 +1,52 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Isa
-  Date: 23.01.2025
-  Time: 11:30
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@include file="header.jsp"%>
+<%@ include file="header.jsp"%>
 
 <html>
 <head>
-    <title>Book</title>
+    <title>Book Page</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bookPage.css">
 </head>
 <body>
-        <div>
-            <h2>${book.title}</h2>
-            <p><strong><fmt:message key="page.book.author"/>: </strong>${book.author}</p>
-            <p>${book.description}</p>
+<div class="book-container">
+    <div class="book-card">
+        <h1 class="book-title">${book.title}</h1>
+        <p class="book-author"><strong><fmt:message key="page.book.author"/>:</strong> ${book.author}</p>
+        <p class="book-description">${book.description}</p>
+    </div>
+
+    <div class="content-section">
+        <div class="download-section">
+            <h2 class="download-title"><fmt:message key="page.download.book"/></h2>
+            <div class="download-links">
+                <c:if test="${not empty book.downloadFb2}">
+                    <a href="${book.downloadFb2}" class="btn-download">FB2</a>
+                </c:if>
+                <c:if test="${not empty book.downloadEpub}">
+                    <a href="${book.downloadEpub}" class="btn-download">EPUB</a>
+                </c:if>
+                <c:if test="${not empty book.downloadPdf}">
+                    <a href="${book.downloadPdf}" class="btn-download">PDF</a>
+                </c:if>
+                <c:if test="${not empty book.downloadDocx}">
+                    <a href="${book.downloadDocx}" class="btn-download">Word</a>
+                </c:if>
+                <c:if test="${not empty book.downloadMobi}">
+                    <a href="${book.downloadMobi}" class="btn-download">MOBI</a>
+                </c:if>
+            </div>
         </div>
-        <br>
-        <c:if test="${not empty book.downloadFb2}">
-            <a href="${book.downloadFb2}">FB2</a>
-        </c:if>
-        <c:if test="${not empty book.downloadEpub}">
-            <a href="${book.downloadEpub}">EPUB</a>
-        </c:if>
-        <c:if test="${not empty book.downloadPdf}">
-            <a href="${book.downloadPdf}">PDF</a>
-        </c:if>
-        <c:if test="${not empty book.downloadDocx}">
-            <a href="${book.downloadDocx}">Word</a>
-        </c:if>
-        <c:if test="${not empty book.downloadMobi}">
-            <a href="${book.downloadMobi}">MOBI</a>
-        </c:if>
-        <br>
-    <a href="${pageContext.request.contextPath}/catalog"><fmt:message key="page.back.button"/></a>
+
+        <div class="read-section">
+            <h2 class="read-title">Read online</h2>
+            <c:if test="${not empty book.read}">
+                <a href="${book.read}" class="btn-read"><fmt:message key="page.read.book"/></a>
+            </c:if>
+        </div>
+    </div>
+
+    <a href="${pageContext.request.contextPath}/catalog" class="btn-back"><fmt:message key="page.back.button"/></a>
+</div>
 </body>
 </html>

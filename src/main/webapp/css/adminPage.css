@@ -146,3 +146,111 @@ form {
     text-align: center;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+
+.download-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px; /* Расстояние между колонками */
+}
+
+.links-left, .links-right {
+    flex: 1;
+}
+
+.links-left h2, .links-right h2 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.links-left .form-group, .links-right .form-group {
+    margin-bottom: 15px;
+}
+
+.links-left .form-group input,
+.links-right .form-group input {
+    width: 100%; /* Сделает поля максимально удобными */
+    max-width: 350px; /* Ограничение максимальной длины */
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.links-left .form-group input:focus,
+.links-right .form-group input:focus {
+    border-color: #6c63ff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(108, 99, 255, 0.3);
+}
+
+.links-right {
+    text-align: left;
+}
+
+/* Flex container for aligning adding and deleting sections side by side */
+.admin-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px; /* Adjust the space between the two sections */
+}
+
+/* Each section (adding and deleting) */
+.adding-section, .deleting-section {
+    width: 48%; /* Ensure they don't take up too much space and stay aligned */
+}
+
+/* Adjust form styles within sections */
+.adding-section form, .deleting-section form {
+    margin: 0;
+}
+
+/* Optional: Adjusting the layout of the download links */
+.download-links {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px; /* Increase space between left and right blocks */
+}
+
+/* Стили для ссылки на чтение */
+.adding-section .form-group input#read {
+    width: 100%; /* Сделает поле для ввода ссылки удобным */
+    max-width: 350px; /* Ограничение максимальной длины */
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.adding-section .form-group input#read:focus {
+    border-color: #6c63ff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(108, 99, 255, 0.3);
+}
+
+/* Стили для заголовка и шрифта ссылки на чтение, аналогичные "download links" */
+.adding-section h2 {
+    font-size: 1.2rem;
+    color: #333333;
+    margin-bottom: 15px;
+}
+
+/* Стили для заголовков секций (adding и deleting) */
+.adding-section .section-title,
+.deleting-section .section-title {
+    font-size: 1.5rem; /* Размер шрифта */
+    color: #555555; /* Цвет текста */
+    margin-bottom: 15px;
+}
+
+/* Стили для заголовка "read link", который остается без изменений */
+.adding-section .links-left {
+    font-size: 1.2rem;
+    color: #333333;
+    margin-bottom: 15px;
+}

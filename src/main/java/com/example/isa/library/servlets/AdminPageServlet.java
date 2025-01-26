@@ -61,6 +61,7 @@ public class AdminPageServlet extends HttpServlet {
                 .downloadPdf(req.getParameter("downloadPdf"))
                 .downloadDocx(req.getParameter("downloadDocx"))
                 .downloadMobi(req.getParameter("downloadMobi"))
+                .read(req.getParameter("read"))
                 .build();
 
         try {

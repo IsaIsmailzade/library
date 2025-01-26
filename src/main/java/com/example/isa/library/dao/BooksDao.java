@@ -21,8 +21,8 @@ public class BooksDao implements Dao<Long, Books> {
 
     private static final BooksDao INSTANCE = new BooksDao();
     private static final String SAVE_BOOK = """
-            INSERT INTO books (title, author, description, download_fb2, download_epub, download_pdf, download_docx, download_mobi)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO books (title, author, description, download_fb2, download_epub, download_pdf, download_docx, download_mobi, read)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
             """;
     private static final String DELETE_BOOK = """
             DELETE FROM books WHERE id = ?
@@ -57,7 +57,8 @@ public class BooksDao implements Dao<Long, Books> {
                 resultSet.getObject("download_epub", String.class),
                 resultSet.getObject("download_pdf", String.class),
                 resultSet.getObject("download_docx", String.class),
-                resultSet.getObject("download_mobi", String.class)
+                resultSet.getObject("download_mobi", String.class),
+                resultSet.getObject("read", String.class)
         );
     }
 
@@ -111,6 +112,7 @@ public class BooksDao implements Dao<Long, Books> {
             preparedStatement.setObject(6, entity.getDownloadPdf());
             preparedStatement.setObject(7, entity.getDownloadDocx());
             preparedStatement.setObject(8, entity.getDownloadMobi());
+            preparedStatement.setObject(9, entity.getRead());
             preparedStatement.executeUpdate();
 
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
