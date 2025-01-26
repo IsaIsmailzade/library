@@ -15,9 +15,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 
-public class BooksService {
+public class BookService {
 
-    private static final BooksService INSTANCE = new BooksService();
+    private static final BookService INSTANCE = new BookService();
     private final BooksDao booksDao = BooksDao.getInstance();
     CreateBookMapper createBookMapper = CreateBookMapper.getINSTANCE();
     DeleteBookValidator deleteBookValidator = DeleteBookValidator.getINSTANCE();
@@ -66,7 +66,7 @@ public class BooksService {
         }
     }
 
-    public static BooksService getInstance() {
+    public static BookService getInstance() {
         return INSTANCE;
     }
 }

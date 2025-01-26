@@ -16,6 +16,7 @@ public class UserMapper implements Mapper<Users, UserDto> {
                 .name(users.getName())
                 .surname(users.getSurname())
                 .email(users.getEmail())
+                .phone(Integer.valueOf(users.getPhone()))
                 .build();
     }
 

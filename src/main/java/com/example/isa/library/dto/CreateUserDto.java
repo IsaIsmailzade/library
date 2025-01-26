@@ -12,5 +12,4 @@ public class CreateUserDto {
     String email;
     String password;
     String phone;
-    String role;
 }

@@ -25,9 +25,11 @@
             <a href="${pageContext.request.contextPath}/registration" class="btn-link">
                 <fmt:message key="page.registration.button"/>
             </a>
-            <c:if test="${requestScope.errors}" var="error">
+            <c:if test="${not empty requestScope.errors}">
                 <div class="error-message">
-                    <span>${error.message}</span><br>
+                    <c:forEach var="error" items="${requestScope.errors}">
+                        <span>${error.message}</span><br>
+                    </c:forEach>
                 </div>
             </c:if>
         </form>

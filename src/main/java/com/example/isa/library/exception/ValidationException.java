@@ -6,9 +6,10 @@ import lombok.Getter;
 
 import java.util.List;
 
-@AllArgsConstructor
 @Getter
+@AllArgsConstructor
 public class ValidationException extends RuntimeException {
 
     private final List<Error> errors;
+
 }

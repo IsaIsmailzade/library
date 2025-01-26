@@ -28,16 +28,11 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
             userService.login(req.getParameter("email"), req.getParameter("password"))
                     .ifPresentOrElse(
                             user -> onLoginSuccess(user, req, resp),
                             () -> onLoginFail(req, resp)
                     );
-        } catch (ValidationException e) {
-            req.setAttribute("errors", e.getErrors());
-            doGet(req, resp);
-        }
     }
 
     @SneakyThrows
