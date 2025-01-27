@@ -1,6 +1,5 @@
 package com.example.isa.library.filter;
 
-import com.example.isa.library.dto.AdminDto;
 import com.example.isa.library.dto.UserDto;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;

@@ -41,6 +41,11 @@ public class RegistrationServlet extends HttpServlet {
             resp.sendRedirect("/login");
         } catch (ValidationException e) {
             req.setAttribute("errors", e.getErrors());
+            req.setAttribute("name", userDto.getName());
+            req.setAttribute("surname", userDto.getSurname());
+            req.setAttribute("email", userDto.getEmail());
+            req.setAttribute("password", userDto.getPassword());
+            req.setAttribute("phone", userDto.getPhone());
             doGet(req, resp);
         }
     }

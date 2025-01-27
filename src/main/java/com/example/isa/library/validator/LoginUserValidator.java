@@ -2,9 +2,10 @@ package com.example.isa.library.validator;
 
 import com.example.isa.library.dao.UserDao;
 import com.example.isa.library.dto.CreateUserDto;
+import com.example.isa.library.dto.LoginUserDto;
 import lombok.Getter;
 
-public class LoginUserValidator implements Validator<CreateUserDto> {
+public class LoginUserValidator implements Validator<LoginUserDto> {
 
     @Getter
     private static final LoginUserValidator INSTANCE = new LoginUserValidator();
@@ -12,7 +13,7 @@ public class LoginUserValidator implements Validator<CreateUserDto> {
     private static final String EMAIL_PATTERN = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
 
     @Override
-    public ValidationResult isValid(CreateUserDto object) {
+    public ValidationResult isValid(LoginUserDto object) {
         ValidationResult validationResult = new ValidationResult();
 
         if (!object.getEmail().matches(EMAIL_PATTERN)) {

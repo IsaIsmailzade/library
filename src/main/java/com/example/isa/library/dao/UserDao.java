@@ -29,16 +29,36 @@ public class UserDao implements Dao<Long, Users> {
             SELECT * FROM users
             WHERE email = ? AND password = ?
             """;
-    private static final String FIND_BY_EMAIL_SQL = """
+    private static final String FIND_BY_EMAIL = """
             SELECT * FROM users
             WHERE email = ?
+            """;
+    private static final String FIND_BY_PHONE = """
+            SELECT * FROM users
+            WHERE phone = ?
             """;
 
     @SneakyThrows
     public Optional<Users> findByEmail(String email) {
         try (Connection connection = ConnectionManager.get();
-             var preparedStatement = connection.prepareStatement(FIND_BY_EMAIL_SQL)) {
+             var preparedStatement = connection.prepareStatement(FIND_BY_EMAIL)) {
             preparedStatement.setObject(1, email);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            Users users = null;
+            if (resultSet.next()) {
+                users = buildEntity(resultSet);
+            }
+
+            return Optional.ofNullable(users);
+        }
+    }
+
+    @SneakyThrows
+    public Optional<Users> findByPhone(String phone) {
+        try (Connection connection = ConnectionManager.get();
+             var preparedStatement = connection.prepareStatement(FIND_BY_PHONE)) {
+            preparedStatement.setObject(1, phone);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             Users users = null;

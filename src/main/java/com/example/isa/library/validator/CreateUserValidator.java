@@ -22,6 +22,10 @@ public class CreateUserValidator implements Validator<CreateUserDto> {
             validationResult.add(Error.of("invalid.password", "Password is too short"));
         }
 
+        if (userDao.findByPhone(object.getPhone()).isPresent()) {
+            validationResult.add(Error.of("invalid.phone", "Phone is already in use"));
+        }
+
         if (userDao.findByEmail(object.getEmail()).isPresent()) {
             validationResult.add(Error.of("invalid.email", "Email is already in use"));
         }
